@@ -142,6 +142,15 @@ class ElmoV2API:
         }
         self.post_command(command)
 
+    # SPEAK COMMAND FOR GENERATING SPEECH
+    def speak(self, text, language="en"):
+        command = {
+            "op": "speak",
+            "text": text,
+            "language": language
+        }
+        self.post_command(command)
+
     def post_command(self, command):
         try:
             response = requests.post(self.POST_COMMAND_PATH, json=command)

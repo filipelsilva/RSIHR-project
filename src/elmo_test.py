@@ -17,6 +17,7 @@ if __name__ == '__main__':
     print(robot.status())
 
     robot.set_screen(text="Hello there!")
+    robot.speak("Hello I am Elmo and I am a very cute robot made by IDMIND.", "en")
 
     # Make the robot make sound
     robot.play_sound("correct.wav")  # sound need to be in .wav
