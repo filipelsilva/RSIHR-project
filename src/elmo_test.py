@@ -19,8 +19,10 @@ if __name__ == '__main__':
     robot.set_screen(text="Hello there!")
     robot.speak("Hello I am Elmo and I am a very cute robot made by IDMIND.", "en")
 
+    robot.update_leds([ [[0,0,255]]*6 + [[0,0,0]] + [[0,128,0]]*6 ] * 6 + [[0,0,0]] * 13 + [ [[255,0,0]]*6 + [[0,0,0]] + [[255,255,0]]*6 ] * 6)
+
     # Make the robot make sound
-    robot.play_sound("correct.wav")  # sound need to be in .wav
+    # robot.play_sound("correct.wav")  # sound need to be in .wav
 
     # Make the robot play a video
     robot.set_screen(video="eyes_green_all.mp4")
