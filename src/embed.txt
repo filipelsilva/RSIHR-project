@@ -2,9 +2,12 @@ Q1) Hello! I'm Elmo. What's your name?
 name given
 
 Q2) Nice to meet you! Today, we're going to do a fun little quiz. Are you ready?
-(yes/no)
-R2) Alright, let's go!
-R2) Oh...I'm sure you'll enjoy it, so let's just try for a bit.
+
+var: user_ready = yes
+R2.1) Alright, let's go!
+
+var: user_ready = no
+R2.2) Oh...I'm sure you'll enjoy it, so let's just try for a bit.
 
 Q3) Out of these colours, which one do you prefer?
 var: colour
@@ -21,88 +24,88 @@ no callback
 Q7) I see. And do you like cake?
 
 var: snack_pref = sweet
-Q7) Oh, if you like sweets, I'm sure you like cake right?
+Q7A) Oh, if you like sweets, I'm sure you like cake right?
 
 var: like_cake = yes
-R7) I knew it! 
+R7.1) I knew it! 
 
 var: like_cake = no
-R7) That's surprising!
+R7.2) That's surprising!
 
 var: snack_pref = savoury
-Q7) Even if you prefer savoury, would you say you like cake?
+Q7B) Even if you prefer savoury, would you say you like cake?
 
 var: like_cake = yes
-R7) That's surprising!
+R7.2) That's surprising!
 
 var: like_cake = no 
-R7) I knew it!
+R7.1) I knew it!
 
 Q8) Well, do you like pie? 
 
 var: like_pie = true && var: like_cake = true
-R8) You like cake and pie? I thought you could only like one! 
+R8.1) You like cake and pie? I thought you could only like one! 
 
 doesn't like either cake or pie
-R8) So you have a favourite dessert huh. 
+R8.2) So you have a favourite dessert huh. 
 
 doesn't like either
-R8) You don't like cake and pie? Are you sure you like food?
+R8.3) You don't like cake and pie? Are you sure you like food?
 
 no callback
-R8) Interesting. 
+R8.4) Interesting. 
 
 var:colour callback
-Q9) Would you like it if I gave you this flower? *show var:colour flower*
+Q9A) Would you like it if I gave you this flower? *show var:colour flower*
 
-yes
-R9) I knew you'd like it, you did say you liked that colour! 
+var: want_flower = yes
+R9.1) I knew you'd like it, you did say you liked that colour! 
 
-no 
-R9) I thought you liked that colour, sorry!
+var: want_flower = no 
+R9.2) I thought you liked that colour, sorry!
 
 no callback
-Q9) Would you like it if I gave you this flower? *show multi-colour flowers* 
+Q9B) Would you like it if I gave you this flower? *show multi-colour flowers* 
 
-yes
-R9) Okay, but I don't have it right now, sorry! 
+var: want_flower = yes
+R9.3) Okay, but I don't have it right now, sorry! 
 
-no
-R9) Maybe flowers just aren't your thing.
+var: want_flower = no
+R9.4) Maybe flowers just aren't your thing.
  
 Callback?
 
-no
+var: callback = no
 Q10) Are you into movies?
 
-yes
-R10) You'll have to show me some some day! 
+var: like_movies = yes
+R10.1) You'll have to show me some some day! 
 
-no
-R10) Maybe they aren't as interesting as I thought. 
+var: like_movies = no
+R10.2) Maybe they aren't as interesting as I thought. 
 
-yes, var:activity_preference = indoor 
-Q10) I know you like indoor activities, so are you into movies?
+var: callback = yes, var:activity_preference = indoor 
+Q10A) I know you like indoor activities, so are you into movies?
 
-yes, var:activity_preference = outdoor 
-Q10) Although I know you prefer outdoor stuff, are you also into movies?
+var: callback = yes, var:activity_preference = outdoor 
+Q10B) Although I know you prefer outdoor stuff, are you also into movies?
 
-yes, var:personality = extroverted
-R10) Since you're extroverted, maybe you go to the cinema often with friends... 
+var: like_movies = yes, var:personality = extroverted
+R10.1) Since you're extroverted, maybe you go to the cinema often with friends... 
 
-yes, var:personality = introverted
-R10) Since you're introverted, maybe you prefer enjoying them at your pace in home... 
+var: like_movies = yes, var:personality = introverted
+R10.2) Since you're introverted, maybe you prefer enjoying them at your pace in home... 
 
-no, var:personality = extroverted 
-R10) Do extroverts not like movies? I don't really get it, I'm just a robot... 
+var: like_movies = no, var:personality = extroverted 
+R10.3) Do extroverts not like movies? I don't really get it, I'm just a robot... 
 
-no, var:personality = introverted
-R10) I thought introverts liked movies? I don't really get it, I'm just a robot... no,
+var: like_movies = no, var:personality = introverted
+R10.4) I thought introverts liked movies? I don't really get it, I'm just a robot... no,
 
 FinalQ) That was the end. But actually, would you like to play again? 
 
-yes
+var: play_again = yes
 FinalQ) Oh sorry! I don't think I have enough time actually, but thanks for playing! 
 
-no
+var: play_again = no
 FinalQ) It's okay, thank you for playing either way!
