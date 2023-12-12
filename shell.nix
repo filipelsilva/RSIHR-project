@@ -1,6 +1,7 @@
 { pkgs ? import <nixpkgs> {} }:
 let
 	packages = ps: with ps; [
+		gtts
 		pyqt5
 		netifaces
 		requests
