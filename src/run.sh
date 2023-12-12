@@ -44,8 +44,8 @@ mkdir -p audio
 echo "${phrases["key"]}"
 for key in "${!phrases[@]}"; do
 	echo "Processing: $key"
-	gtts-cli --lang en --tld co.uk "${phrases[$key]}" --output "audio/$key.wav"
+	gtts-cli --lang en --tld co.uk "${phrases[$key]}" --output "audio/$key.mp3"
+	ffmpeg -i "audio/$key.mp3" "audio/$key.wav"
 done
 
-address="idmind@192.168.0.$1"
-scp -r 
+./send.sh "$1"
