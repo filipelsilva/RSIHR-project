@@ -14,9 +14,9 @@ import random
 import middleware as mw
 
 
-MAX_RANGE = 30.0
+MAX_RANGE = 5.0
 MIN_SLEEP = 2.0
-MAX_SLEEP = 4.0
+MAX_SLEEP = 5.0
 
 
 class BehaviourLookAround:
@@ -63,11 +63,15 @@ class BehaviourLookAround:
                     # behaviour is enabled, move randomly
                     current_pan = self.pan.angle
                     pan_angle = random.uniform(current_pan - MAX_RANGE, current_pan + MAX_RANGE)
-                    pan_angle = max(self.pan.min_angle, min(self.pan.max_angle, pan_angle))
+                    pan_angle = max(-15, min(15, pan_angle))
+                    print(self.pan.min_angle)
+                    print(self.pan.max_angle)
                     self.pan.angle = pan_angle
                     current_tilt = self.tilt.angle
                     tilt_angle = random.uniform(current_tilt - MAX_RANGE, current_tilt + MAX_RANGE)
-                    tilt_angle = max(self.tilt.min_angle, min(self.tilt.max_angle, tilt_angle))
+                    tilt_angle = min(-10, max(-15, tilt_angle))
+                    print(self.tilt.min_angle)
+                    print(self.tilt.max_angle)
                     self.tilt.angle = tilt_angle
                     time.sleep(random.uniform(MIN_SLEEP, MAX_SLEEP))
         finally:
