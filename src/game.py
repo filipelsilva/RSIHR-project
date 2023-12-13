@@ -332,11 +332,11 @@ async def main():
         await sleep(2)
     else:
         if like_cake and like_pie:
-            # I knew it!
+            # You like cake and pie? I thought you could only like one!
             robot.play_sound("R8.1.wav")
             await sleep(2)
         elif like_cake or like_pie:
-            # So you have a favourite dessert huh
+            # So you have a favourite dessert huh.
             robot.play_sound("R8.2.wav")
             await sleep(2)
         elif not like_cake and not like_pie:

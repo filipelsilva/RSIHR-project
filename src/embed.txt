@@ -104,10 +104,10 @@ R10.5) As a fellow extrovert, I thought you would like to go out to the cinema t
 var: like_movies = no, var:personality = introverted
 R10.6) As a fellow introvert, I thought you would like watching movies at home too...
 
-FinalQ) That was the end. But actually, would you like to play again?
+FinalQ1) That was the end. But actually, would you like to play again?
 
 var: play_again = yes
-FinalQ) Oh sorry! I don't think I have enough time actually, but thanks for playing!
+FinalQ2) Oh sorry! I don't think I have enough time actually, but thanks for playing!
 
 var: play_again = no
-FinalQ) It's okay, thank you for playing either way!
+FinalQ3) It's okay, thank you for playing either way!
