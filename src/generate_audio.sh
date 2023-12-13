@@ -1,50 +1,11 @@
-declare -A phrases
-# {{{ Phrases
-phrases["Q1"]="Hello! I'm Elmo. What's your name?"
-phrases["Q2"]="Nice to meet you! Today, we're going to do a fun little quiz. Are you ready?"
-phrases["R2.1"]="Alright, let's go!"
-phrases["R2.2"]="Oh...I'm sure you'll enjoy it, so let's just try for a bit."
-phrases["Q3"]="Out of these colours, which one do you prefer?"
-phrases["Q4"]="I see, interesting choice. And if you had to spend your free time, would you prefer indoors or outdoors?"
-phrases["Q5"]="Got it! But would you say you're more introverted or extroverted?"
-phrases["Q6"]="Changing topic, I've been kind of a foodie lately. Do you prefer sweet or savoury snacks?"
-phrases["Q7"]="I see. And do you like cake?"
-phrases["Q7A"]="Oh, if you like sweets, I'm sure you like cake right?"
-phrases["R7.1"]="I knew it!"
-phrases["R7.2"]="That's surprising!"
-phrases["Q7B"]="Even if you prefer savoury, would you say you like cake?"
-phrases["R7.2"]="That's surprising!"
-phrases["R7.1"]="I knew it!"
-phrases["Q8"]="Well, do you like pie?"
-phrases["R8.1"]="You like cake and pie? I thought you could only like one!"
-phrases["R8.2"]="So you have a favourite dessert huh."
-phrases["R8.3"]="You don't like cake and pie? Are you sure you like food?"
-phrases["R8.4"]="Interesting."
-phrases["Q9A"]="Would you like it if I gave you this flower?"
-phrases["R9.1"]="I knew you'd like it, you did say you liked that colour!"
-phrases["R9.2"]="I thought you liked that colour, sorry!"
-phrases["Q9B"]="Would you like it if I gave you this flower?"
-phrases["R9.3"]="Okay, but I don't have it right now, sorry!"
-phrases["R9.4"]="Maybe flowers just aren't your thing."
-phrases["Q10"]="Are you into movies?"
-phrases["R10.1"]="You'll have to show me some some day!"
-phrases["R10.2"]="Maybe they aren't as interesting as I thought."
-phrases["Q10A"]="I know you like indoor activities, so are you into movies?"
-phrases["Q10B"]="Although I know you prefer outdoor stuff, are you also into movies?"
-phrases["R10.3"]="Since you're extroverted, maybe you go to the cinema often with friends..."
-phrases["R10.4"]="Since you're introverted, maybe you prefer enjoying them at your pace in home..."
-phrases["R10.5"]="Do extroverts not like movies? I don't really get it, I'm just a robot..."
-phrases["R10.6"]="I thought introverts liked movies? I don't really get it, I'm just a robot..."
-phrases["FinalQ1"]="That was the end. But actually, would you like to play again?"
-phrases["FinalQ2"]="Oh sorry! I don't think I have enough time actually, but thanks for playing!"
-phrases["FinalQ3"]="It's okay, thank you for playing either way!"
-# }}}
-
 rm -rf audio
 mkdir -p audio
-echo "${phrases["key"]}"
-for key in "${!phrases[@]}"; do
-	echo "Processing: $key"
-	gtts-cli --lang en --tld co.uk "${phrases[$key]}" --output "audio/$key.mp3"
-	ffmpeg -i "audio/$key.mp3" "audio/$key.wav"
+
+grep ')' embed.txt | while read -r line 
+do
+	key=$(echo "$line" | cut -d')' -f1)
+	value=$(echo "$line" | cut -d')' -f2)
+	echo "Generating audio for $key: ${value:1}"
+	gtts-cli --lang en --tld co.uk "${value:1}" --output "audio/$key.mp3"
+	ffmpeg -nostdin -i "audio/$key.mp3" "audio/$key.wav"
 done
