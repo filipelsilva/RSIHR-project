@@ -1,4 +1,4 @@
-import sys, time, asyncio
+import sys, asyncio
 from asyncio import sleep
 
 from ElmoV2API import ElmoV2API
@@ -28,8 +28,8 @@ async def main():
     # Note that you need to connect to the app first to discover the IP of the robot
     robot_ip = sys.argv[1]
 
-    # 1 or 0 
-    callback = sys.argv[2]
+    # 1 or 0
+    callback = bool(sys.argv[2])
 
     # Initiate the API to communicate with RES request with the robots
     robot = ElmoV2API(robot_ip, debug=True)
@@ -62,12 +62,10 @@ async def main():
         op = input("> ")
 
         if op == "1":
-            user_ready = "yes"
             # Alright, let's go!
             robot.play_sound("R2.1.wav")
             valid = True
         elif op == "2":
-            user_ready = "no"
             # Oh...I'm sure you'll enjoy it, so let's just try for a bit.
             robot.play_sound("R2.2.wav")
             valid = True
@@ -82,6 +80,7 @@ async def main():
 
     # ======================================== Question 3 ===========================================
 
+    colour = ""
     # Out of these colours, which one do you prefer?
     robot.play_sound("Q3.wav")
     await sleep(2)
@@ -120,6 +119,7 @@ async def main():
 
     # ======================================== Question 4 ===========================================
 
+    activity_preference = ""
     # I see, interesting choice. And if you had to spend your free time, would you prefer indoors or outdoors?
     robot.play_sound("Q4.wav")
     await sleep(2)
@@ -150,6 +150,7 @@ async def main():
 
     # ======================================== Question 5 ===========================================
 
+    personality_type = ""
     # Got it! But would you say you're more introverted or extroverted?
     robot.play_sound("Q5.wav")
     await sleep(2)
@@ -180,6 +181,7 @@ async def main():
     # ======================================== Question 6 ===========================================
 
 
+    snack_pref = ""
     # Changing topic, I've been kind of a foodie lately. Do you prefer sweet or savoury snacks?
     robot.play_sound("Q6.wav")
     await sleep(2)
@@ -203,8 +205,160 @@ async def main():
             robot.play_sound("Q6.wav")
             await sleep(2)
 
+    # ===============================================================================================
+
+
+
+    # ======================================== Question 7 ===========================================
+
+
+    like_cake = False
+    if callback and snack_pref == "sweet":
+        # Oh, if you like sweets, I'm sure you like cake right?
+        robot.play_sound("Q7A.wav")
+        await sleep(2)
+
+        valid = False
+        while not valid:
+
+            print("Select one of the following options [1-3]:")
+            print("1) Yes")
+            print("2) No")
+            print("3) Repeat, please.")
+            op = input("> ")
+
+            if op == "1":
+                valid = True
+                like_cake = True
+                # I knew it!
+                robot.play_sound("R7.1.wav")
+                await sleep(2)
+            elif op == "2":
+                valid = True
+                like_cake = False
+                # That's surprising!
+                robot.play_sound("R7.2.wav")
+                await sleep(2)
+            elif op == "3":
+                robot.play_sound("Q7A.wav")
+                await sleep(2)
+
+    elif callback and snack_pref == "savoury":
+        # Even if you prefer savoury, would you say you like cake?
+        robot.play_sound("Q7B.wav")
+        await sleep(2)
+
+        valid = False
+        while not valid:
+
+            print("Select one of the following options [1-3]:")
+            print("1) Yes")
+            print("2) No")
+            print("3) Repeat, please.")
+            op = input("> ")
+
+            if op == "1":
+                valid = True
+                like_cake = True
+                # That's surprising!
+                robot.play_sound("R7.2.wav")
+                await sleep(2)
+            elif op == "2":
+                valid = True
+                like_cake = False
+                # I knew it!
+                robot.play_sound("R7.1.wav")
+                await sleep(2)
+            elif op == "3":
+                robot.play_sound("Q7B.wav")
+                await sleep(2)
+
+    else:
+        # I see. And do you like cake?
+        robot.play_sound("Q7.wav")
+
+        valid = False
+        while not valid:
+
+            print("Select one of the following options [1-3]:")
+            print("1) Yes")
+            print("2) No")
+            print("3) Repeat, please.")
+            op = input("> ")
+
+            if op == "1":
+                valid = True
+                like_cake = True
+            elif op == "2":
+                valid = True
+                like_cake = False
+            elif op == "3":
+                robot.play_sound("Q7.wav")
+                await sleep(2)
+
 
     # ===============================================================================================
+
+
+
+    # ======================================== Question 8 ===========================================
+
+    like_pie = False
+    # Well, do you like pie?
+    robot.play_sound("Q8.wav")
+    await sleep(2)
+
+    valid = False
+    while not valid:
+
+        print("Select one of the following options [1-3]:")
+        print("1) Yes")
+        print("2) No")
+        print("3) Repeat, please.")
+        op = input("> ")
+
+        if op == "1":
+            valid = True
+            like_pie = True
+        elif op == "2":
+            valid = True
+            like_pie = False
+        elif op == "3":
+            robot.play_sound("Q8.wav")
+            await sleep(2)
+
+    if not callback:
+        # Interesting.
+        robot.play_sound("R8.4.wav")
+        await sleep(2)
+    else:
+        if like_cake and like_pie:
+            # I knew it!
+            robot.play_sound("R8.1.wav")
+            await sleep(2)
+        elif like_cake or like_pie:
+            # So you have a favourite dessert huh
+            robot.play_sound("R8.2.wav")
+            await sleep(2)
+        elif not like_cake and not like_pie:
+            # You don't like cake and pie? Are you sure you like food?
+            robot.play_sound("R8.3.wav")
+            await sleep(2)
+
+
+    # ===============================================================================================
+
+
+
+    # ======================================== Question 9 ===========================================
+
+
+
+
+
+
+
+
 
 
 
