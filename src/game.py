@@ -6,7 +6,6 @@ from ElmoV2API import ElmoV2API
 
 # Flags
 callback = None
-user_ready = None
 colour = None
 activity_preference = None
 personality_type = None
@@ -168,7 +167,7 @@ async def main():
             personality_type = "introverted"
             valid = True
         elif op == "2":
-            activity_preference = "extroverted"
+            personality_type = "extroverted"
             valid = True
         elif op == "3":
             robot.play_sound("Q5.wav")
@@ -333,11 +332,11 @@ async def main():
         await sleep(2)
     else:
         if like_cake and like_pie:
-            # I knew it!
+            # You like cake and pie? I thought you could only like one!
             robot.play_sound("R8.1.wav")
             await sleep(2)
         elif like_cake or like_pie:
-            # So you have a favourite dessert huh
+            # So you have a favourite dessert huh.
             robot.play_sound("R8.2.wav")
             await sleep(2)
         elif not like_cake and not like_pie:
@@ -352,16 +351,160 @@ async def main():
 
     # ======================================== Question 9 ===========================================
 
+    if callback:
+        # Would you like it if I gave you this flower? *show var:colour flower*
+        robot.play_sound("Q9A.wav")
+        await sleep(2)
+
+        valid = False
+        while not valid:
+
+            print("Select one of the following options [1-3]:")
+            print("1) Yes")
+            print("2) No")
+            print("3) Repeat, please.")
+            op = input("> ")
+
+            if op == "1":
+                valid = True
+                robot.play_sound("R9.1.wav")
+                await sleep(2)
+            elif op == "2":
+                valid = True
+                robot.play_sound("R9.2.wav")
+                await sleep(2)
+            elif op == "3":
+                robot.play_sound("Q9A.wav")
+                await sleep(2)
+
+    else:
+        # Would you like it if I gave you this flower? *show a random, or other color flowers* 
+        robot.play_sound("Q9B.wav")
+        await sleep(2)
+
+        valid = False
+        while not valid:
+
+            print("Select one of the following options [1-3]:")
+            print("1) Yes")
+            print("2) No")
+            print("3) Repeat, please.")
+            op = input("> ")
+
+            if op == "1":
+                valid = True
+                robot.play_sound("R9.3.wav")
+                await sleep(2)
+            elif op == "2":
+                valid = True
+                robot.play_sound("R9.3.wav")
+                await sleep(2)
+            elif op == "3":
+                robot.play_sound("Q9B.wav")
+                await sleep(2)
+
+
+    # ===============================================================================================
 
 
 
+    # ======================================== Question 10 ==========================================
+
+    if not callback:
+        # Would you like it if I gave you this flower? *show var:colour flower*
+        robot.play_sound("Q10.wav")
+        await sleep(2)
+
+        valid = False
+        while not valid:
+
+            print("Select one of the following options [1-3]:")
+            print("1) Yes")
+            print("2) No")
+            print("3) Repeat, please.")
+            op = input("> ")
+
+            if op == "1":
+                valid = True
+                robot.play_sound("R10.1.wav")
+                await sleep(2)
+            elif op == "2":
+                valid = True
+                robot.play_sound("R10.2.wav")
+                await sleep(2)
+            elif op == "3":
+                robot.play_sound("Q10.wav")
+                await sleep(2)
+
+    else:
+        sound_to_play = ""
+        if activity_preference == "indoors":
+            # I know you like indoor activities, so are you into movies?
+            sound_to_play = "Q10A.wav"
+        elif activity_preference == "outdoors":
+            # Although I know you prefer outdoor stuff, are you also into movies?
+            sound_to_play = "Q10B.wav"
+
+        robot.play_sound(sound_to_play)
+        await sleep(2)
+
+        valid = False
+        while not valid:
+
+            print("Select one of the following options [1-3]:")
+            print("1) Yes")
+            print("2) No")
+            print("3) Repeat, please.")
+            op = input("> ")
+
+            if op == "1":
+                valid = True
+                if personality_type == "extroverted":
+                    robot.play_sound("R10.3.wav")
+                elif personality_type == "introverted":
+                    robot.play_sound("R10.4.wav")
+                await sleep(2)
+            elif op == "2":
+                valid = True
+                if personality_type == "extroverted":
+                    robot.play_sound("R10.5.wav")
+                elif personality_type == "introverted":
+                    robot.play_sound("R10.6.wav")
+                await sleep(2)
+            elif op == "3":
+                robot.play_sound(sound_to_play)
+                await sleep(2)
+
+
+    # ===============================================================================================
 
 
 
+    # ==================================== Final Question ===========================================
 
+    robot.play_sound("FinalQ1.wav")
+    await sleep(2)
 
+    valid = False
+    while not valid:
 
+        print("Select one of the following options [1-3]:")
+        print("1) Yes")
+        print("2) No")
+        print("3) Repeat, please.")
+        op = input("> ")
 
+        if op == "1":
+            valid = True
+            robot.play_sound("FinalQ2.wav")
+            await sleep(2)
+        elif op == "2":
+            valid = True
+            robot.play_sound("FinalQ3.wav")
+            await sleep(2)
+        elif op == "3":
+            robot.play_sound("FinalQ1.wav")
+            await sleep(2)
 
 
     # Check the robot is connected and its current status You can use this command to get information about the

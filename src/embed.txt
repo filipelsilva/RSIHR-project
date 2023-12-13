@@ -13,21 +13,21 @@ Q3) Out of these colours, which one do you prefer?
 var: colour
 
 Q4) I see, interesting choice. And if you had to spend your free time, would you prefer indoors or outdoors?
-var:activity_preference  
+var:activity_preference
 
 Q5) Got it! But would you say you're more introverted or extroverted?
 var: personality_type
 
 Q6) Changing topic, I've been kind of a foodie lately. Do you prefer sweet or savoury snacks?
 
-no callback 
+no callback
 Q7) I see. And do you like cake?
 
 var: snack_pref = sweet
 Q7A) Oh, if you like sweets, I'm sure you like cake right?
 
 var: like_cake = yes
-R7.1) I knew it! 
+R7.1) I knew it!
 
 var: like_cake = no
 R7.2) That's surprising!
@@ -38,74 +38,76 @@ Q7B) Even if you prefer savoury, would you say you like cake?
 var: like_cake = yes
 R7.2) That's surprising!
 
-var: like_cake = no 
+var: like_cake = no
 R7.1) I knew it!
 
-Q8) Well, do you like pie? 
+Q8) Well, do you like pie?
 
 var: like_pie = true && var: like_cake = true
-R8.1) You like cake and pie? I thought you could only like one! 
+R8.1) You like cake and pie? I thought you could only like one!
 
 doesn't like either cake or pie
-R8.2) So you have a favourite dessert huh. 
+R8.2) So you have a favourite dessert huh.
 
 doesn't like either
 R8.3) You don't like cake and pie? Are you sure you like food?
 
 no callback
-R8.4) Interesting. 
+R8.4) Interesting.
 
 var:colour callback
-Q9A) Would you like it if I gave you this flower? *show var:colour flower*
+Q9A) Would you like it if I gave you this flower?
+*show var:colour flower*
 
 var: want_flower = yes
-R9.1) I knew you'd like it, you did say you liked that colour! 
+R9.1) I knew you'd like it, you did say you liked that colour!
 
-var: want_flower = no 
+var: want_flower = no
 R9.2) I thought you liked that colour, sorry!
 
 no callback
-Q9B) Would you like it if I gave you this flower? *show multi-colour flowers* 
+Q9B) Would you like it if I gave you this flower?
+*show multi-colour flowers*
 
 var: want_flower = yes
-R9.3) Okay, but I don't have it right now, sorry! 
+R9.3) Okay, but I don't have it right now, sorry!
 
 var: want_flower = no
 R9.4) Maybe flowers just aren't your thing.
- 
+
 Callback?
 
 var: callback = no
 Q10) Are you into movies?
 
 var: like_movies = yes
-R10.1) You'll have to show me some some day! 
+R10.1) You'll have to show me some some day!
 
 var: like_movies = no
-R10.2) Maybe they aren't as interesting as I thought. 
+R10.2) Maybe they aren't as interesting as I thought.
 
-var: callback = yes, var:activity_preference = indoor 
+var: callback = yes, var:activity_preference = indoor
 Q10A) I know you like indoor activities, so are you into movies?
 
-var: callback = yes, var:activity_preference = outdoor 
+var: callback = yes, var:activity_preference = outdoor
 Q10B) Although I know you prefer outdoor stuff, are you also into movies?
 
 var: like_movies = yes, var:personality = extroverted
-R10.1) Since you're extroverted, maybe you go to the cinema often with friends... 
+R10.3) Since you're extroverted, maybe you go to the cinema often with friends...
 
 var: like_movies = yes, var:personality = introverted
-R10.2) Since you're introverted, maybe you prefer enjoying them at your pace in home... 
+R10.4) Since you're introverted, maybe you prefer enjoying them at your pace in home...
 
-var: like_movies = no, var:personality = extroverted 
-R10.3) Do extroverts not like movies? I don't really get it, I'm just a robot... 
+var: like_movies = no, var:personality = extroverted
+R10.5) As a fellow extrovert, I thought you would like to go out to the cinema too...
 
 var: like_movies = no, var:personality = introverted
-R10.4) I thought introverts liked movies? I don't really get it, I'm just a robot... no,
+R10.6) As a fellow introvert, I thought you would like watching movies at home too...
 
-FinalQ) That was the end. But actually, would you like to play again? 
+FinalQ1) That was the end. But actually, would you like to play again?
 
 var: play_again = yes
-FinalQ) Oh sorry! I don't think I have enough time actually, but thanks for playing! 
+FinalQ2) Oh sorry! I don't think I have enough time actually, but thanks for playing!
 
 var: play_again = no
-FinalQ) It's okay, thank you for playing either way!
+FinalQ3) It's okay, thank you for playing either way!
