@@ -40,6 +40,7 @@ phrases["FinalQ2"]="Oh sorry! I don't think I have enough time actually, but tha
 phrases["FinalQ3"]="It's okay, thank you for playing either way!"
 # }}}
 
+rm -rf audio
 mkdir -p audio
 echo "${phrases["key"]}"
 for key in "${!phrases[@]}"; do
@@ -47,5 +48,3 @@ for key in "${!phrases[@]}"; do
 	gtts-cli --lang en --tld co.uk "${phrases[$key]}" --output "audio/$key.mp3"
 	ffmpeg -i "audio/$key.mp3" "audio/$key.wav"
 done
-
-./send.sh "$1"
