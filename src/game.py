@@ -28,7 +28,7 @@ async def main():
     robot_ip = sys.argv[1]
 
     # 1 or 0
-    callback = bool(sys.argv[2])
+    callback = bool(sys.argv[2] == "1")
 
     # Initiate the API to communicate with RES request with the robots
     robot = ElmoV2API(robot_ip, debug=True)
@@ -37,7 +37,7 @@ async def main():
 
     # Hello! I'm Elmo. What's your name?
     robot.play_sound("Q1.wav")
-    await sleep(2)
+    await sleep(4)
 
     input("> ")
 
@@ -49,7 +49,7 @@ async def main():
 
     # Nice to meet you! Today, we're going to do a fun little quiz. Are you ready?
     robot.play_sound("Q2.wav")
-    await sleep(2)
+    await sleep(7)
 
     valid = False
     while not valid:
@@ -63,15 +63,16 @@ async def main():
         if op == "1":
             # Alright, let's go!
             robot.play_sound("R2.1.wav")
+            await sleep(3)
             valid = True
         elif op == "2":
             # Oh...I'm sure you'll enjoy it, so let's just try for a bit.
             robot.play_sound("R2.2.wav")
+            await sleep(7)
             valid = True
         elif op == "3":
             robot.play_sound("Q2.wav")
-
-        await sleep(2)
+            await sleep(7)
 
     # ===============================================================================================
 
@@ -82,7 +83,7 @@ async def main():
     colour = ""
     # Out of these colours, which one do you prefer?
     robot.play_sound("Q3.wav")
-    await sleep(2)
+    await sleep(4)
 
     valid = False
     while not valid:
@@ -109,7 +110,7 @@ async def main():
             valid = True
         elif op == "5":
             robot.play_sound("Q3.wav")
-            await sleep(2)
+            await sleep(4)
 
 
     # ===============================================================================================
@@ -121,7 +122,7 @@ async def main():
     activity_preference = ""
     # I see, interesting choice. And if you had to spend your free time, would you prefer indoors or outdoors?
     robot.play_sound("Q4.wav")
-    await sleep(2)
+    await sleep(7)
 
     valid = False
     while not valid:
@@ -140,7 +141,7 @@ async def main():
             valid = True
         elif op == "3":
             robot.play_sound("Q4.wav")
-            await sleep(2)
+            await sleep(7)
 
 
     # ===============================================================================================
@@ -152,7 +153,7 @@ async def main():
     personality_type = ""
     # Got it! But would you say you're more introverted or extroverted?
     robot.play_sound("Q5.wav")
-    await sleep(2)
+    await sleep(5)
 
     valid = False
     while not valid:
@@ -171,7 +172,7 @@ async def main():
             valid = True
         elif op == "3":
             robot.play_sound("Q5.wav")
-            await sleep(2)
+            await sleep(5)
 
     # ===============================================================================================
 
@@ -183,7 +184,7 @@ async def main():
     snack_pref = ""
     # Changing topic, I've been kind of a foodie lately. Do you prefer sweet or savoury snacks?
     robot.play_sound("Q6.wav")
-    await sleep(2)
+    await sleep(7)
 
     valid = False
     while not valid:
@@ -202,7 +203,7 @@ async def main():
             valid = True
         elif op == "3":
             robot.play_sound("Q6.wav")
-            await sleep(2)
+            await sleep(7)
 
     # ===============================================================================================
 
@@ -215,7 +216,7 @@ async def main():
     if callback and snack_pref == "sweet":
         # Oh, if you like sweets, I'm sure you like cake right?
         robot.play_sound("Q7A.wav")
-        await sleep(2)
+        await sleep(7)
 
         valid = False
         while not valid:
@@ -231,21 +232,21 @@ async def main():
                 like_cake = True
                 # I knew it!
                 robot.play_sound("R7.1.wav")
-                await sleep(2)
+                await sleep(7)
             elif op == "2":
                 valid = True
                 like_cake = False
                 # That's surprising!
                 robot.play_sound("R7.2.wav")
-                await sleep(2)
+                await sleep(7)
             elif op == "3":
                 robot.play_sound("Q7A.wav")
-                await sleep(2)
+                await sleep(7)
 
     elif callback and snack_pref == "savoury":
         # Even if you prefer savoury, would you say you like cake?
         robot.play_sound("Q7B.wav")
-        await sleep(2)
+        await sleep(7)
 
         valid = False
         while not valid:
@@ -261,20 +262,21 @@ async def main():
                 like_cake = True
                 # That's surprising!
                 robot.play_sound("R7.2.wav")
-                await sleep(2)
+                await sleep(7)
             elif op == "2":
                 valid = True
                 like_cake = False
                 # I knew it!
                 robot.play_sound("R7.1.wav")
-                await sleep(2)
+                await sleep(3)
             elif op == "3":
                 robot.play_sound("Q7B.wav")
-                await sleep(2)
+                await sleep(7)
 
     else:
         # I see. And do you like cake?
         robot.play_sound("Q7.wav")
+        await sleep(2)
 
         valid = False
         while not valid:
@@ -293,7 +295,7 @@ async def main():
                 like_cake = False
             elif op == "3":
                 robot.play_sound("Q7.wav")
-                await sleep(2)
+                await sleep(7)
 
 
     # ===============================================================================================
@@ -324,7 +326,7 @@ async def main():
             like_pie = False
         elif op == "3":
             robot.play_sound("Q8.wav")
-            await sleep(2)
+            await sleep(7)
 
     if not callback:
         # Interesting.
@@ -334,15 +336,15 @@ async def main():
         if like_cake and like_pie:
             # You like cake and pie? I thought you could only like one!
             robot.play_sound("R8.1.wav")
-            await sleep(2)
+            await sleep(7)
         elif like_cake or like_pie:
             # So you have a favourite dessert huh.
             robot.play_sound("R8.2.wav")
-            await sleep(2)
+            await sleep(7)
         elif not like_cake and not like_pie:
             # You don't like cake and pie? Are you sure you like food?
             robot.play_sound("R8.3.wav")
-            await sleep(2)
+            await sleep(7)
 
 
     # ===============================================================================================
@@ -352,9 +354,9 @@ async def main():
     # ======================================== Question 9 ===========================================
 
     if callback:
-        # Would you like it if I gave you this flower? *show var:colour flower*
+        # Would you like it if I gave you this flower? 
         robot.play_sound("Q9A.wav")
-        await sleep(2)
+        await sleep(4)
 
         valid = False
         while not valid:
@@ -368,19 +370,19 @@ async def main():
             if op == "1":
                 valid = True
                 robot.play_sound("R9.1.wav")
-                await sleep(2)
+                await sleep(7)
             elif op == "2":
                 valid = True
                 robot.play_sound("R9.2.wav")
-                await sleep(2)
+                await sleep(7)
             elif op == "3":
                 robot.play_sound("Q9A.wav")
-                await sleep(2)
+                await sleep(4)
 
     else:
-        # Would you like it if I gave you this flower? *show a random, or other color flowers* 
+        # Would you like it if I gave you this flower?
         robot.play_sound("Q9B.wav")
-        await sleep(2)
+        await sleep(4)
 
         valid = False
         while not valid:
@@ -394,14 +396,14 @@ async def main():
             if op == "1":
                 valid = True
                 robot.play_sound("R9.3.wav")
-                await sleep(2)
+                await sleep(7)
             elif op == "2":
                 valid = True
                 robot.play_sound("R9.3.wav")
-                await sleep(2)
+                await sleep(7)
             elif op == "3":
                 robot.play_sound("Q9B.wav")
-                await sleep(2)
+                await sleep(4)
 
 
     # ===============================================================================================
@@ -411,9 +413,9 @@ async def main():
     # ======================================== Question 10 ==========================================
 
     if not callback:
-        # Would you like it if I gave you this flower? *show var:colour flower*
+        # Are you into movies?
         robot.play_sound("Q10.wav")
-        await sleep(2)
+        await sleep(4)
 
         valid = False
         while not valid:
@@ -426,15 +428,16 @@ async def main():
 
             if op == "1":
                 valid = True
+                # You'll have to show me some someday
                 robot.play_sound("R10.1.wav")
-                await sleep(2)
+                await sleep(4)
             elif op == "2":
                 valid = True
                 robot.play_sound("R10.2.wav")
-                await sleep(2)
+                await sleep(4)
             elif op == "3":
                 robot.play_sound("Q10.wav")
-                await sleep(2)
+                await sleep(4)
 
     else:
         sound_to_play = ""
@@ -446,7 +449,7 @@ async def main():
             sound_to_play = "Q10B.wav"
 
         robot.play_sound(sound_to_play)
-        await sleep(2)
+        await sleep(7)
 
         valid = False
         while not valid:
@@ -463,17 +466,17 @@ async def main():
                     robot.play_sound("R10.3.wav")
                 elif personality_type == "introverted":
                     robot.play_sound("R10.4.wav")
-                await sleep(2)
+                await sleep(7)
             elif op == "2":
                 valid = True
                 if personality_type == "extroverted":
                     robot.play_sound("R10.5.wav")
                 elif personality_type == "introverted":
                     robot.play_sound("R10.6.wav")
-                await sleep(2)
+                await sleep(7)
             elif op == "3":
                 robot.play_sound(sound_to_play)
-                await sleep(2)
+                await sleep(7)
 
 
     # ===============================================================================================
@@ -483,7 +486,7 @@ async def main():
     # ==================================== Final Question ===========================================
 
     robot.play_sound("FinalQ1.wav")
-    await sleep(2)
+    await sleep(4)
 
     valid = False
     while not valid:
@@ -497,14 +500,12 @@ async def main():
         if op == "1":
             valid = True
             robot.play_sound("FinalQ2.wav")
-            await sleep(2)
         elif op == "2":
             valid = True
             robot.play_sound("FinalQ3.wav")
-            await sleep(2)
         elif op == "3":
             robot.play_sound("FinalQ1.wav")
-            await sleep(2)
+            await sleep(4)
 
 
     # Check the robot is connected and its current status You can use this command to get information about the
