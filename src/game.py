@@ -112,7 +112,7 @@ async def main():
             robot.play_sound("Q3.wav")
             await sleep(4)
 
-
+    #robot.set_screen(image=f"{colour}.jpg")
     # ===============================================================================================
 
 
@@ -232,13 +232,13 @@ async def main():
                 like_cake = True
                 # I knew it!
                 robot.play_sound("R7.1.wav")
-                await sleep(7)
+                await sleep(2)
             elif op == "2":
                 valid = True
                 like_cake = False
                 # That's surprising!
                 robot.play_sound("R7.2.wav")
-                await sleep(7)
+                await sleep(3)
             elif op == "3":
                 robot.play_sound("Q7A.wav")
                 await sleep(7)
@@ -262,7 +262,7 @@ async def main():
                 like_cake = True
                 # That's surprising!
                 robot.play_sound("R7.2.wav")
-                await sleep(7)
+                await sleep(3)
             elif op == "2":
                 valid = True
                 like_cake = False
@@ -354,7 +354,8 @@ async def main():
     # ======================================== Question 9 ===========================================
 
     if callback:
-        # Would you like it if I gave you this flower? 
+        # Would you like it if I gave you this flower?
+        robot.set_screen(image=f"{colour}.jpg") 
         robot.play_sound("Q9A.wav")
         await sleep(4)
 
@@ -369,18 +370,21 @@ async def main():
 
             if op == "1":
                 valid = True
+                # I knew you'd like it, you did say you liked that colour!
                 robot.play_sound("R9.1.wav")
-                await sleep(7)
+                await sleep(4)
             elif op == "2":
                 valid = True
+                # I thought you liked that colour, sorry!
                 robot.play_sound("R9.2.wav")
-                await sleep(7)
+                await sleep(3)
             elif op == "3":
                 robot.play_sound("Q9A.wav")
                 await sleep(4)
 
     else:
         # Would you like it if I gave you this flower?
+        robot.set_screen(image="white.jpg")
         robot.play_sound("Q9B.wav")
         await sleep(4)
 
@@ -396,15 +400,16 @@ async def main():
             if op == "1":
                 valid = True
                 robot.play_sound("R9.3.wav")
-                await sleep(7)
+                await sleep(3)
             elif op == "2":
                 valid = True
-                robot.play_sound("R9.3.wav")
-                await sleep(7)
+                robot.play_sound("R9.4.wav")
+                await sleep(3)
             elif op == "3":
                 robot.play_sound("Q9B.wav")
                 await sleep(4)
 
+    robot.set_screen(image="normal.png")
 
     # ===============================================================================================
 
@@ -428,11 +433,12 @@ async def main():
 
             if op == "1":
                 valid = True
-                # You'll have to show me some someday
+                # You'll have to show me some some day!
                 robot.play_sound("R10.1.wav")
                 await sleep(4)
             elif op == "2":
                 valid = True
+                # Maybe they aren't as interesting as I thought.
                 robot.play_sound("R10.2.wav")
                 await sleep(4)
             elif op == "3":
@@ -463,15 +469,19 @@ async def main():
             if op == "1":
                 valid = True
                 if personality_type == "extroverted":
+                    # Since you're extroverted, maybe you go to the cinema often with friends...
                     robot.play_sound("R10.3.wav")
                 elif personality_type == "introverted":
+                    # Since you're introverted, maybe you prefer enjoying them at your pace in home...
                     robot.play_sound("R10.4.wav")
                 await sleep(7)
             elif op == "2":
                 valid = True
                 if personality_type == "extroverted":
+                    # As a fellow extrovert, I thought you would like to go out to the cinema too...
                     robot.play_sound("R10.5.wav")
                 elif personality_type == "introverted":
+                    # As a fellow introvert, I thought you would like watching movies at home too...
                     robot.play_sound("R10.6.wav")
                 await sleep(7)
             elif op == "3":
