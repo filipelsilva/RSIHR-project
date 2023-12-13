@@ -6,7 +6,6 @@ from ElmoV2API import ElmoV2API
 
 # Flags
 callback = None
-user_ready = None
 colour = None
 activity_preference = None
 personality_type = None
@@ -352,7 +351,57 @@ async def main():
 
     # ======================================== Question 9 ===========================================
 
+    if callback:
+        # Would you like it if I gave you this flower? *show var:colour flower*
+        robot.play_sound("Q9A.wav")
+        await sleep(2)
 
+        valid = False
+        while not valid:
+
+            print("Select one of the following options [1-3]:")
+            print("1) Yes")
+            print("2) No")
+            print("3) Repeat, please.")
+            op = input("> ")
+
+            if op == "1":
+                valid = True
+                robot.play_sound("R9.1.wav")
+                await sleep(2)
+            elif op == "2":
+                valid = True
+                robot.play_sound("R9.2.wav")
+                await sleep(2)
+            elif op == "3":
+                robot.play_sound("Q9A.wav")
+                await sleep(2)
+
+    else:
+        # Would you like it if I gave you this flower? *show a random, or other color flowers* 
+        robot.play_sound("Q9B.wav")
+        await sleep(2)
+
+        valid = False
+        while not valid:
+
+            print("Select one of the following options [1-3]:")
+            print("1) Yes")
+            print("2) No")
+            print("3) Repeat, please.")
+            op = input("> ")
+
+            if op == "1":
+                valid = True
+                robot.play_sound("R9.3.wav")
+                await sleep(2)
+            elif op == "2":
+                valid = True
+                robot.play_sound("R9.3.wav")
+                await sleep(2)
+            elif op == "3":
+                robot.play_sound("Q9B.wav")
+                await sleep(2)
 
 
 
